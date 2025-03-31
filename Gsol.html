@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<style>
+body {
+    margin: 0;
+    height: auto;
+    min-height: 100vh;
+    background: linear-gradient(to right, #443d40 0%, #dacfc7 100%);
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    height: 200px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2c2727;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+.announcements {
+    background-color: #4a4040;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2c2727;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links li:hover .dropdown-content,
+.nav-links li:focus-within .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+/* Added scrollable content */
+.content section {
+    margin-bottom: 2rem;
+}
+
+</style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Welcome to Our Website</h1>
+    </div>
+    <nav class="navbar">
+        <div class="announcements">
+            Latest Updates: New features coming soon!
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">Home</a>
+                <div class="dropdown-content">
+                    <a href="#welcome">Welcome</a>
+                    <a href="#features">Features</a>
+                    <a href="#news">News</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">About</a>
+                <div class="dropdown-content">
+                    <a href="#team">Our Team</a>
+                    <a href="#mission">Our Mission</a>
+                    <a href="#history">History</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+                <div class="dropdown-content">
+                    <a href="#email">Email Us</a>
+                    <a href="#phone">Phone Numbers</a>
+                    <a href="#address">Address</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <main class="content">
+        <section>
+            <h2>About Us</h2>
+            <p>This is where you would put your main content.</p>
+        </section>
+        <section>
+            <h2>Our Services</h2>
+            <p>Here's information about our services.</p>
+        </section>
+        <section>
+            <h2>Contact Information</h2>
+            <p>Get in touch with us here.</p>
+        </section>
+        <section>
+            <h2>Latest News</h2>
+            <p>Check out our latest updates.</p>
+        </section>
+    </main>
+
+<script>
+let lastScroll = 0;
+let navbar = document.querySelector('.navbar');
+let timeoutId;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        navbar.classList.remove('hidden');
+    } else {
+        navbar.classList.add('hidden');
+    }
+
+    lastScroll = currentScroll;
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+        if (currentScroll > 0) {
+            navbar.classList.add('hidden');
+        }
+    }, 2000);
+});
+</script>
+</body>
+</html>
+
+# Initialize Git repository and push to GitHub
+git init
+git add index.html
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/your-username/your-website.git
+git push -u origin main
